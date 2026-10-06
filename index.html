@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff5e9">
+<title>Pour Madame Melie</title>
+<style>
+:root{--ink:#071A3D;--orange:#F97316;--orange2:#FFB347;--cream:#FFF5E9;--line:#efd5bd}
+*{box-sizing:border-box} html,body{margin:0;width:100%;overflow-x:hidden}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:linear-gradient(160deg,#fffaf5,#ffe6c7);min-height:100vh}
+button,input{font:inherit} button{cursor:pointer}
+main{min-height:100svh;padding:12px;display:grid;place-items:center}
+.app{width:min(100%,430px);background:white;border-radius:22px;overflow:hidden;box-shadow:0 18px 55px #071a3d22}
+.bar{height:42px;background:var(--ink);color:white;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font:11px Consolas,monospace}
+.dots{display:flex;gap:6px}.dots i{width:8px;height:8px;background:#fff9;border-radius:50%}
+.screen{min-height:calc(100svh - 100px);padding:24px 18px 28px} [hidden]{display:none!important}
+.kicker{font-size:10px;font-weight:900;letter-spacing:.12em;color:var(--orange);text-transform:uppercase;line-height:1.45}
+h1{font-size:36px;line-height:1.03;letter-spacing:-.04em;margin:10px 0 15px}
+p{line-height:1.65} .muted{color:#596579;font-size:15px}
+.primary{width:100%;border:0;border-radius:14px;padding:15px;background:linear-gradient(135deg,var(--orange2),var(--orange));color:white;font-weight:900;box-shadow:0 10px 25px #f9731633}
+.tiny{font-size:11px;color:#7c8490;text-align:center;margin-top:13px}
+.desk{margin:18px 0 24px;background:linear-gradient(145deg,#fff0dc,#ffd19a);border-radius:22px;padding:16px 12px 13px;overflow:hidden}
+.scene{position:relative;height:245px;max-width:340px;margin:auto}
+.table{position:absolute;left:0;right:0;bottom:8px;height:72px;background:#b8753f;border-radius:10px 10px 18px 18px;box-shadow:inset 0 7px #965b30}
+.monitor{position:absolute;left:50%;top:17px;transform:translateX(-50%) rotate(-2deg);width:210px;height:135px;background:var(--ink);border-radius:16px;padding:10px}
+.monitor .display{height:100%;border-radius:9px;background:linear-gradient(145deg,#ffb347,#f97316);display:grid;place-items:center;text-align:center;color:white}
+.monitor b{font-size:18px}.code{font:11px Consolas,monospace;margin-top:8px}
+.stand{position:absolute;left:50%;top:150px;transform:translateX(-50%);width:65px;height:34px;background:var(--ink);clip-path:polygon(38% 0,62% 0,72% 75%,100% 75%,100% 100%,0 100%,0 75%,28% 75%)}
+.coffee{position:absolute;left:19px;bottom:42px;width:43px;height:50px;background:#fff7ec;border:3px solid var(--ink);border-radius:5px 5px 12px 12px}
+.coffee:after{content:"";position:absolute;right:-18px;top:9px;width:18px;height:21px;border:3px solid var(--ink);border-left:0;border-radius:0 12px 12px 0}
+.fan{position:absolute;right:20px;bottom:43px;width:58px;height:72px}
+.fanhead{width:55px;height:55px;border:4px solid #258b63;border-radius:50%;position:relative;background:#bfe8d4}
+.fanhead:before,.fanhead:after{content:"";position:absolute;left:23px;top:7px;width:5px;height:34px;background:#258b63;border-radius:50%;transform:rotate(45deg)}
+.fanhead:after{transform:rotate(-45deg)}.fanbase{width:38px;height:9px;background:#258b63;border-radius:9px;margin:5px auto}
+.wallet{position:absolute;right:90px;bottom:37px;width:60px;height:36px;background:#f08db6;border:2px solid #bd5f88;border-radius:9px;transform:rotate(4deg)}
+.wallet:after{content:"";position:absolute;right:6px;top:9px;width:18px;height:12px;background:#ffd0e2;border-radius:5px}
+.caption{text-align:center;font-size:12px;font-weight:800;margin-top:5px}
+.card{border:1px solid var(--line);border-radius:20px;padding:24px 18px;background:#fff;box-shadow:0 12px 35px #071a3d12;margin-top:20px}
+.icon{width:58px;height:58px;border-radius:17px;background:#fff0df;color:var(--orange);display:grid;place-items:center;margin:0 auto 17px;font:900 18px Consolas}
+.center{text-align:center} .field{width:100%;padding:14px;border:1px solid var(--line);border-radius:13px;outline:0;margin:10px 0}
+.field:focus{border-color:var(--orange);box-shadow:0 0 0 4px #f9731618} .feedback{min-height:50px;font-weight:800;font-size:14px}
+.arena{position:relative;height:440px;margin-top:20px;background:linear-gradient(#fffdfa,#fff3e5);border:1px dashed #e8bd96;border-radius:20px;overflow:hidden}
+.choice{position:absolute;max-width:145px;padding:10px 12px;border:1px solid #e7c8ac;background:white;color:var(--ink);border-radius:12px;font-size:11px;line-height:1.25;font-weight:800;box-shadow:0 7px 18px #071a3d12}
+.reply{min-height:58px;text-align:center;font-size:13px;font-weight:800;color:#5d6674;padding-top:10px}
+.letter{background:#fffdf8;border:1px solid #eadbc8;border-radius:14px;padding:24px 19px;margin-top:18px;box-shadow:0 12px 35px #071a3d10}
+.letter p{font-family:Georgia,serif;font-size:16px;line-height:1.72;color:#29364a;margin:0 0 18px}
+.badge{display:table;margin:18px auto;padding:9px 14px;border-radius:99px;background:linear-gradient(135deg,#fff0df,#ffd19a);font:800 12px Consolas;color:#a84508}
+footer{height:44px;border-top:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 13px;font-size:10px;color:#737c89}
+@media(min-width:700px){.app{width:min(94vw,920px)}.screen{min-height:600px;padding:38px}.home{display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center}}
+
+.celebration{position:fixed;inset:0;z-index:999;pointer-events:none;overflow:hidden;background:rgba(255,255,255,.03)}
+.bloom{position:absolute;left:50%;top:52%;width:12px;height:12px;border-radius:50%;animation:bloom 1.45s cubic-bezier(.15,.75,.25,1) forwards}
+.bloom::before{content:"✦";position:absolute;font-size:22px;transform:translate(-50%,-50%)}
+@keyframes bloom{
+  0%{transform:translate(-50%,-50%) scale(.2);opacity:0}
+  12%{opacity:1}
+  100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r)) scale(1.15);opacity:0}
+}
+.flower{position:absolute;bottom:-45px;font-size:27px;animation:flowers 2.4s ease-out forwards}
+@keyframes flowers{
+  0%{transform:translateY(0) rotate(0);opacity:0}
+  15%{opacity:1}
+  70%{opacity:1}
+  100%{transform:translateY(-105vh) rotate(320deg);opacity:0}
+}
+to{transform:translateX(0) rotate(-1deg);opacity:1}
+}
+
+</style>
+</head>
+<body>
+<main><section class="app">
+<header class="bar"><div class="dots"><i></i><i></i><i></i></div><span>une-petite-surprise.exe</span><span>&lt;3</span></header>
+
+<section id="home" class="screen home">
+<div>
+<div class="kicker">QUELQUES LIGNES DE CODE POUR MADAME MELIE</div>
+<div class="desk"><div class="scene">
+<div class="monitor"><div class="display"><div><b>Joyeuse fête, Madame.</b><div class="code">gratitude = 100 %</div></div></div></div><div class="stand"></div>
+<div class="coffee"></div><div class="fan"><div class="fanhead"></div><div class="fanbase"></div></div><div class="wallet"></div><div class="table"></div>
+</div><div class="caption">J’allais écrire un simple message… puis je me suis rappelé qui était ma prof.</div></div>
+</div>
+<div><div class="kicker">APPAREMMENT, C’EST LA FÊTE DES ENSEIGNANTS</div><h1>Donc forcément, il fallait que je fasse quelque chose.</h1>
+<p class="muted">Un simple « bonne fête Madame » aurait fait l’affaire. mais comme je peux compliquer je complique un peu votre cadeau aussi.</p>
+<button class="primary" id="start">Bon, voyons ça</button><div class="tiny">Normalement, rien ne devrait exploser. Normalement.</div></div>
+</section>
+
+<section id="password" class="screen center" hidden>
+<div class="card"><div class="kicker">UNE DERNIÈRE VÉRIFICATION</div><div class="icon">&lt;/&gt;</div><h1>Prouvons d’abord que c’est bien vous.</h1>
+<p>Quel est le prénom de votre étudiant préféré ?</p>
+<form id="passform"><input id="pass" class="field" placeholder="Vous connaissez la réponse…" autocomplete="off"><button class="primary">Valider ma réponse</button></form>
+<div id="passmsg" class="feedback"></div></div>
+</section>
+
+<section id="game" class="screen" hidden>
+<div class="kicker">BON, PUISQUE VOUS ÊTES LÀ...</div><h1>Choisissez.</h1>
+<p class="muted">Je précise que mon budget et mes pouvoirs sont assez limités.</p>
+<div class="arena" id="arena">
+<button class="choice fake" data-msg="Belle tentative, Madame… mais ne mélangeons pas cadeau et négociation.">Voir mes notes augmenter</button>
+<button class="choice fake" data-msg="Madame, restons quand même dans le domaine du possible.">Une classe sans “Madame, ça ne marche pas !”</button>
+<button class="choice fake" data-msg="Pour ça, la requête doit aller un peu plus haut. Je n’ai pas les droits administrateur.">🙏Une année scolaire bénie</button>
+<button class="choice fake" data-msg="J’ai cherché. Apparemment, Dieu n’a pas prévu ce raccourci dans cette version.">Pouvoir utiliser Ctrl + Z dans la vraie vie</button>
+<button class="choice" id="message" hidden>Lire un message de Brayann</button>
+</div>
+<div class="reply" id="reply">Faites votre choix. Mais je ne garantis pas que tous les boutons vont coopérer.</div>
+</section>
+
+<section id="gift" class="screen" hidden>
+<div class="kicker">BON, PLUS SÉRIEUSEMENT...</div><h1>Madame Melie,</h1>
+<div class="letter"><p>Bon, apparemment c&#x27;est la fête des enseignants. Juste pour vous dire que si Dieu ne vous avait pas mise comme ma prof, je Lui aurais demandé... Ou peut-être que c&#x27;est une prière qui s&#x27;est réalisée, qui sait ?</p>
+<p> Parce qu&#x27;au cours de ces années, vous m&#x27;avez influencé sans forcer. Mieux que des arguments, vous utilisez les émotions. Lorsque je pense à un bon vendeur, je pense un peu à vous. Bon, là je m&#x27;éloigne du sujet...</p>
+<p>Je me disais souvent : « Non, elle raconte même ce que je maîtrise. » Je m&#x27;amusais même à dire des choses que je savais mauvaises, sachant que vous alliez me rattraper et que ça allait grignoter quelques heures de cours. Mais à chaque fois, vous allez tellement en profondeur que je me dis : « Si je savais, je la fermais. »</p>
+<p>L&#x27;autre jour, j&#x27;étais avec Alpherd et il a trouvé le mot pour décrire ce que je ne trouvais pas : « Madame Melie, la prof-là est maternelle. »</p>
+<p>Pour la prière  merci de m&#x27;avoir montré la voie vers cette arme. À part acheter une pastèque et vous rendre visite avec, je ne vois pas ce que je ferais d&#x27;autre mais Seul Dieu connaît l&#x27;heure et le jour  en Français facile MERCI.</p>
+<p> D&#x27;autres personnes vont sûrement deviner le mot de passe, sinon j&#x27;irais plus loin dans les détails.<br>Vous vous demandez probablement le rapport entre ce texte et la fête des enseignants ? En fait, je n&#x27;en ai pas grand-chose à faire : un prof comme vous devrait être fêté tous les jours.</p>
+<p>Cordicalement. Oui, « cordicalesement ». Votre étudiant préféré.</p>
+<p>Depuis quand suis-je votre étudiant préféré ? Le poste était livré, alors je l&#x27;ai pris.</p></div>
+<div class="badge">gratitude = 100 %</div>
+<button class="primary" id="again">Bon, on recommence ?</button>
+</section>
+
+<footer><span id="status">Surprise prête</span><span id="step">01 / 04</span></footer>
+</section></main><div id="celebration" class="celebration" hidden></div>
+<script>
+(()=>{
+const $=s=>document.querySelector(s), screens=['home','password','game','gift'];
+const show=(id,n,status)=>{screens.forEach(x=>$('#'+x).hidden=x!==id);$('#step').textContent=n+' / 04';$('#status').textContent=status;scrollTo(0,0)};
+$('#start').onclick=()=>show('password','02','Vérification');
+let tries=0;
+$('#passform').onsubmit=e=>{e.preventDefault();let v=$('#pass').value.trim().toLowerCase();if(v==='brayann'){$('#passmsg').textContent='Voilà. Je savais qu’on pouvait se comprendre.';setTimeout(()=>{show('game','03','À vous de jouer');place()},700)}else{tries++;let m=['Ah… donc on commence comme ça ?','Madame, réfléchissez bien. Ce site a été codé avec beaucoup d’amour-propre.','Je vais faire comme si je n’avais pas vu cette réponse. Réessayez.','Bon… son prénom commence par B. Je ne peux vraiment pas faire plus.'];$('#passmsg').textContent=m[Math.min(tries-1,m.length-1)];$('#pass').select()}};
+const arena=$('#arena'), msg=$('#message'); let revealed=false;
+function move(b){if(b!==msg)b.style.zIndex='2';let x=10+Math.random()*Math.max(10,arena.clientWidth-b.offsetWidth-20),y=10+Math.random()*Math.max(10,arena.clientHeight-b.offsetHeight-20);b.style.left=x+'px';b.style.top=y+'px'}
+function place(){[...arena.querySelectorAll('.fake')].forEach((b,i)=>{b.style.left=(i%2?54:6)+'%';b.style.top=(35+Math.floor(i/2)*120)+'px'});if(revealed)move(msg)}
+function reveal(){if(!revealed){revealed=true;msg.hidden=false;
+    const cover=arena.querySelectorAll('.fake')[1];
+    const left=Math.max(8,Math.min(arena.clientWidth-msg.offsetWidth-8,cover.offsetLeft+18));
+    const top=Math.max(8,Math.min(arena.clientHeight-msg.offsetHeight-8,cover.offsetTop+18));
+    msg.style.left=left+'px';msg.style.top=top+'px';
+    msg.style.zIndex='1';cover.style.zIndex='2'}}
+document.querySelectorAll('.fake').forEach(b=>{const go=e=>{e.preventDefault();$('#reply').textContent=b.dataset.msg;move(b);reveal()};b.addEventListener('touchstart',go,{passive:false});b.addEventListener('mouseenter',go);b.addEventListener('click',go)});
+msg.addEventListener('click',e=>{e.preventDefault();celebrate();setTimeout(()=>show('gift','04','Message ouvert'),1450)});
+
+function celebrate(){
+  const c=$('#celebration'); c.innerHTML=''; c.hidden=false;
+  const colors=['#F97316','#FFB347','#FF4D8D','#8B5CF6','#22C55E','#06B6D4','#FACC15'];
+  for(let i=0;i<58;i++){
+    const s=document.createElement('span'); s.className='bloom';
+    const a=Math.random()*Math.PI*2,d=80+Math.random()*260;
+    s.style.setProperty('--x',Math.cos(a)*d+'px');
+    s.style.setProperty('--y',Math.sin(a)*d+'px');
+    s.style.setProperty('--r',(Math.random()*720-360)+'deg');
+    s.style.color=colors[i%colors.length];
+    s.style.background=colors[(i+2)%colors.length];
+    s.style.animationDelay=(Math.random()*.22)+'s'; c.appendChild(s);
+  }
+  const flowers=['✿','❀','✦','✧'];
+  for(let i=0;i<22;i++){
+    const f=document.createElement('span'); f.className='flower';
+    f.textContent=flowers[i%flowers.length];
+    f.style.left=(Math.random()*100)+'vw';
+    f.style.color=colors[(i+3)%colors.length];
+    f.style.animationDelay=(Math.random()*.35)+'s'; c.appendChild(f);
+  }
+  setTimeout(()=>{c.hidden=true;c.innerHTML=''},2600);
+}
+$('#again').onclick=()=>{tries=0;revealed=false;msg.hidden=true;$('#pass').value='';$('#passmsg').textContent='';$('#reply').textContent='Faites votre choix. Mais je ne garantis pas que tous les boutons vont coopérer.';show('home','01','Surprise prête')};
+addEventListener('resize',()=>{if(!$('#game').hidden)place()});
+})();
+</script>
+</body></html>
